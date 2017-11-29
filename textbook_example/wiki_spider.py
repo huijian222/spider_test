@@ -21,7 +21,9 @@ def getOuterLinks(bsobj, incloudelink):
     return outerLinks
 
 def getInterPageUrl(pageUrl):
-    pageUrl = pageUrl.replace("http://", "").split("/")
+    pageUrl = re.subn("https?://", "",pageUrl)
+    pageUrl = str(pageUrl[0]).split("/")
+    #$pageUrl = pageUrl.replace("https?://", "").split("/")
     return pageUrl[0]
 
 def getRandomExternalLink(startingPage):
@@ -42,6 +44,7 @@ def followExternalOnly(startingSite):
     followExternalOnly(externalLink)
     
 followExternalOnly("http://oreilly.com")
+# print(getInterPageUrl("https://oreilly.com/temp/tem1.html"))
 # links = set()
 # def GetWikiLinks(url = None):
 #     '''
