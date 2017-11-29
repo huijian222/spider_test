@@ -34,7 +34,10 @@ def getRandomExternalLink(startingPage):
     outerLink = getOuterLinks(bsobj, getInterPageUrl(startingPage))
     if len(outerLink) == 0:
         innerHtml = getInterLinks(bsobj, "")
-        return getRandomExternalLink(innerHtml[random.randint(0, len(innerHtml) - 1)])
+        if len(innerHtml) == 0:
+            innerHtml = getInterLinks(bsobj, "")
+        else:
+            return getRandomExternalLink(innerHtml[random.randint(0, len(innerHtml) - 1)])
     else:
         return outerLink[random.randint(0, len(outerLink) - 1)]
 
